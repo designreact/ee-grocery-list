@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "rootDir": "src",
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "outDir": "bin",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "importHelpers": true,
+    "strict": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    ".nyc_output",
+    ".history",
+    "lib",
+    "coverage",
+    "**/__units__",
+    "**/__mocks__",
+    "**/__integrations__",
+    "node_modules"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "browser": false,
+    "node": true,
+    "jest/globals": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "jest"
+  ],
+  "settings": {},
+  "rules": {
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "complexity": [
+      "error",
+      {
+        "max": 6
+      }
+    ],
+    "no-console": 2,
+    "object-curly-spacing": [
+      2,
+      "always"
+    ],
+    "jest/no-alias-methods": "error",
+    "jest/expect-expect": "error",
+    "require-await": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.unit.ts",
+        "*.integration.ts",
+        "*.e2e.ts",
+        "*.test.ts",
+        "**/__mocks__/*.ts",
+        "**/__units__/*.ts",
+        "**/__integrations__/*.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    }
+  ]
+}

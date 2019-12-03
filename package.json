@@ -1,0 +1,58 @@
+{
+  "name": "ee-grocery-list",
+  "version": "0.0.1",
+  "description": "Rudimentary grocery list application",
+  "main": "bin/server/index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "test": "run-p -c test:*",
+    "test:unit": "jest -c jest-unit.config.js",
+    "test:integration": "jest -c jest-integration.config.js",
+    "lint": "eslint . --ext [ts,js] --color",
+    "format": "lint --fix",
+    "precommit": "run-p build test lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "TBC"
+  },
+  "engines": {
+    "node": "~10.16.0"
+  },
+  "author": "martin@designreact.co.uk",
+  "license": "UNLICENCED",
+  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn precommit"
+    }
+  },
+  "dependencies": {
+    "config": "^3.0.1",
+    "koa": "^2.7.0",
+    "lodash": "^4.17.5",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/config": "0.0.34",
+    "@types/jest": "24.0.12",
+    "@types/koa": "^2.11.0",
+    "@types/node": "10.14.x",
+    "@typescript-eslint/eslint-plugin": "1.7.0",
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "4.2.0",
+    "eslint-plugin-import": "2.17.2",
+    "eslint-plugin-jest": "22.6.4",
+    "eslint-plugin-prettier": "3.0.1",
+    "eslint-plugin-react": "7.13.0",
+    "husky": "^3.1.0",
+    "jest": "24.8.0",
+    "nock": "10.0.6",
+    "npm-run-all": "4.1.5",
+    "prettier": "1.17.0",
+    "ts-jest": "24.0.2",
+    "ts-node": "8.1.0",
+    "typescript": "3.4.5"
+  }
+}
