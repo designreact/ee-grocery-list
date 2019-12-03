@@ -1,14 +1,14 @@
 'use strict';
 
-const base = require("./jest.base.config");
+const base = require('./jest.base.config');
 
 module.exports = {
   ...base,
-  displayName: "unit-test",
-  roots: ["<rootDir>/"],
-  testMatch: ["**/__units__/**/*.unit.ts?(x)"],
+  displayName: 'unit-test',
+  roots: ['<rootDir>/'],
+  testMatch: ['**/__units__/**/*.unit.ts?(x)'],
   collectCoverage: true,
-  modulePathIgnorePatterns: ["<rootDir>/.*/__mocks__"],
+  modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__'],
   coverageThreshold: {
     global: {
       branches: 80,

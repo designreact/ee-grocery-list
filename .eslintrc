@@ -42,7 +42,15 @@
     ],
     "jest/no-alias-methods": "error",
     "jest/expect-expect": "error",
-    "require-await": "error"
+    "require-await": "error",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
   },
   "overrides": [
     {
