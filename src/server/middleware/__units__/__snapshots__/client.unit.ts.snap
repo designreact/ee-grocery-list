@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The client middleware to set the status and body as expected 1`] = `
+Object {
+  "body": "Hello World!",
+  "status": 200,
+}
+`;
