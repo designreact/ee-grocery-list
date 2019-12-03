@@ -1,4 +1,6 @@
 import { app, router } from '../app';
+
+import { authMiddleware } from '../middleware/auth';
 import { clientMiddleware } from '../middleware/client';
 
 jest.mock('../app');
@@ -15,6 +17,10 @@ test('The server should listen on port 4000', () => {
 
 test('The server should add the router routes to the app', () => {
   expect(app.use).toHaveBeenCalledWith(router.routes());
+});
+
+test('The server should add the authMiddleware to the app', () => {
+  expect(app.use).toHaveBeenCalledWith(authMiddleware);
 });
 
 test('The router should add the clientMiddleware', () => {
