@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Hello world works 1`] = `"Hello World!"`;
+exports[`Auth middleware sets a cookie 1`] = `"Hello World!"`;
+
+exports[`Client middleware works 1`] = `"Hello World!"`;
+
+exports[`Items middleware adds items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[\\"added items\\"]}"`;
+
+exports[`Items middleware deletes items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[\\"deleted items\\"]}"`;
+
+exports[`Items middleware gets items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[\\"items\\"]}"`;
+
+exports[`Items middleware updates items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[\\"updated items\\"]}"`;

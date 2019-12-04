@@ -5,12 +5,13 @@
   "main": "bin/server/index.js",
   "scripts": {
     "build": "tsc --build",
+    "debug": "ts-node ./src/server/index.ts",
     "test": "run-p -c test:*",
     "test:unit": "jest -c jest-unit.config.js",
     "test:integration": "jest -c jest-integration.config.js",
     "lint": "eslint . --ext [ts,js] --color",
     "format": "lint --fix",
-    "precommit": "run-p build test lint",
+    "precommit": "run-p test lint",
     "typecheck": "tsc --noEmit"
   },
   "repository": {
@@ -29,10 +30,12 @@
     }
   },
   "dependencies": {
+    "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.0.42",
     "@types/supertest": "^2.0.8",
     "config": "^3.0.1",
     "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.5",
     "uuidv4": "^6.0.0"
