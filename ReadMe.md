@@ -2,6 +2,10 @@
 
 Sample application for Equal Experts technical challenge.
 
+### Start local database
+You need a local database running for the integration tests and sample app to run
+> yarn db:start
+
 ### Run tests
 > yarn test
 
