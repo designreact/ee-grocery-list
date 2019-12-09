@@ -10,13 +10,13 @@
  const UserTableParams = {
    AttributeDefinitions: [
      {
-       AttributeName: 'UserId',
+       AttributeName: 'userId',
        AttributeType: 'S'
      }
    ],
    KeySchema: [
      {
-       AttributeName: 'UserId',
+       AttributeName: 'userId',
        KeyType: 'HASH'
      }
    ],
@@ -30,21 +30,21 @@
  const ItemTableParams = {
    AttributeDefinitions: [
      {
-       AttributeName: 'ID',
+       AttributeName: 'id',
        AttributeType: 'S'
      },
      {
-       AttributeName: 'UserId',
+       AttributeName: 'userId',
        AttributeType: 'S'
      }
    ],
    KeySchema: [
      {
-       AttributeName: 'ID',
+       AttributeName: 'id',
        KeyType: 'HASH'
      },
      {
-       AttributeName: 'UserId',
+       AttributeName: 'userId',
        KeyType: 'RANGE'
      }
    ],
