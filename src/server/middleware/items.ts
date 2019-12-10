@@ -1,20 +1,21 @@
 import Koa from 'koa';
 
 import {
-  addItems,
+  addItem,
   getItems,
-  updateItems,
-  deleteItems
-} from '../utils/__mocks__/database.mock';
+  updateItem,
+  deleteItem,
+} from '../utils/database';
+import { Item } from '../utils/database';
 
-const applyUpdates = (userId: string, action: string, items: string[]): Promise<string[]> => {  
+const applyUpdates = (userId: string, action: string, item: Item): Promise<Item[]> => {  
   switch (action) {
     case 'add':
-      return addItems(userId, items);
+      return addItem(userId, item.text);
     case 'delete':
-      return deleteItems(userId, items);
+      return deleteItem(userId, item.id);
     case 'update':
-      return updateItems(userId, items);
+      return updateItem(userId, item);
     default:
       return Promise.resolve([]);
   }
@@ -30,9 +31,9 @@ export const itemMiddlewareGet = async (ctx: Koa.Context): Promise<void> => {
 
 export const itemMiddlewarePost = async (ctx: Koa.Context): Promise<void> => {
   const userId = ctx.cookies.get('userId');
-  const { action, items } = ctx.request.body;
+  const { action, item } = ctx.request.body;
   
-  const updatedItems: string[] = userId ? await applyUpdates(userId, action, items) : [];
+  const updatedItems: Item[] = userId ? await applyUpdates(userId, action, item) : [];
 
   ctx.body = {
     status: 'ok',

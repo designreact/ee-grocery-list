@@ -1,16 +1,19 @@
 // import { createMockContext } from '@shopify/jest-koa-mocks';
 import { itemMiddlewareGet, itemMiddlewarePost } from '../items';
 import {
-  addItems,
+  addItem,
   getItems,
-  updateItems,
-  deleteItems
-} from '../../utils/__mocks__/database.mock';
+  updateItem,
+  deleteItem
+} from '../../utils/database';
 
-jest.mock('../../utils/__mocks__/database.mock');
+jest.mock('../../utils/database');
 
 const mockUserId = '01234456789';
-const mockItems = ['mock-item-0', 'mock-item-1'];
+const mockItems = [
+  { id: 'id-01234', text: 'mock-item-0', checked: false }, 
+  { id: 'id-56789', text: 'mock-item-1', checked: false },
+];
 const mockResponseItems = ['mock-response-item-2', 'mock-response-item-3'];
 
 // TODO: switch to using createMockContext from @shopify/jest-koa-mocks
@@ -48,18 +51,18 @@ describe('itemMiddlewareGet', () => {
 
 describe('itemMiddlewarePost', () => {
   test('expect the itemsMiddleware to add and return items for a user', async () => {
-    addItems.mockResolvedValue(mockResponseItems);
+    addItem.mockResolvedValue(mockResponseItems);
     const ctx = createMockContext({
       request: { 
         body: {
           action: 'add',
-          items: mockItems
+          item: mockItems[0]
         } 
       }
     });
     
     await itemMiddlewarePost(ctx);
-    expect(addItems).toHaveBeenCalledWith(mockUserId, mockItems);
+    expect(addItem).toHaveBeenCalledWith(mockUserId, mockItems[0].text);
     expect(ctx.body).toStrictEqual({
       status: 'ok',
       items: mockResponseItems
@@ -67,17 +70,17 @@ describe('itemMiddlewarePost', () => {
   });
 
   test('expect the itemsMiddleware to delete and return the remaining items for a user', async () => {
-    deleteItems.mockResolvedValue(mockResponseItems);
+    deleteItem.mockResolvedValue(mockResponseItems);
     const ctx = createMockContext({
       request: { 
         body: {
           action: 'delete',
-          items: mockItems
+          item: mockItems[0]
         } 
       }
     });
     await itemMiddlewarePost(ctx);
-    expect(deleteItems).toHaveBeenCalledWith(mockUserId, mockItems);
+    expect(deleteItem).toHaveBeenCalledWith(mockUserId, mockItems[0].id);
     expect(ctx.body).toStrictEqual({
       status: 'ok',
       items: mockResponseItems
@@ -85,17 +88,17 @@ describe('itemMiddlewarePost', () => {
   });
 
   test('expect the itemsMiddleware to update and return the updated items for a user', async () => {
-    updateItems.mockResolvedValue(mockResponseItems);
+    updateItem.mockResolvedValue(mockResponseItems);
     const ctx = createMockContext({
       request: { 
         body: {
           action: 'update',
-          items: mockItems
+          item: mockItems[0]
         } 
       }
     });
     await itemMiddlewarePost(ctx);
-    expect(updateItems).toHaveBeenCalledWith(mockUserId, mockItems);
+    expect(updateItem).toHaveBeenCalledWith(mockUserId, mockItems[0]);
     expect(ctx.body).toStrictEqual({
       status: 'ok',
       items: mockResponseItems
@@ -103,7 +106,7 @@ describe('itemMiddlewarePost', () => {
   });
 
   test('expect the itemsMiddleware to return an empty array when no action is sent', async () => {
-    updateItems.mockResolvedValue(mockResponseItems);
+    updateItem.mockResolvedValue(mockResponseItems);
     const ctx = createMockContext({
       request: {
         body: {
@@ -119,8 +122,8 @@ describe('itemMiddlewarePost', () => {
   });
 
   test('expect the itemsMiddleware to return an empty array when no userId is in cookies', async () => {
-    updateItems.mockResolvedValue(mockResponseItems);
-    const ctx = { cookies: { get() {} }, request: { body: {} } };
+    updateItem.mockResolvedValue(mockResponseItems);
+    const ctx = { cookies: { get() {} }, body: {}, request: { body: {} } };
     await itemMiddlewarePost(ctx);
     expect(ctx.body).toStrictEqual({
       status: 'ok',

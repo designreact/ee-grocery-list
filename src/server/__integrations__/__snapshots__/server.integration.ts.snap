@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Auth middleware sets a cookie 1`] = `"Hello World!"`;
-
 exports[`Client middleware works 1`] = `"Hello World!"`;
 
-exports[`Items middleware adds items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[\\"added items\\"]}"`;
+exports[`Items middleware add an item 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[{\\"id\\":\\"itemid-0123456789\\",\\"text\\":\\"items with added\\",\\"checked\\":true,\\"userId\\":\\"userId-0987654321\\"}]}"`;
 
-exports[`Items middleware deletes items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[\\"deleted items\\"]}"`;
+exports[`Items middleware delete an item 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[{\\"id\\":\\"itemid-0123456789\\",\\"text\\":\\"items with deleted\\",\\"checked\\":true,\\"userId\\":\\"userId-0987654321\\"}]}"`;
 
-exports[`Items middleware gets items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[\\"items\\"]}"`;
+exports[`Items middleware gets items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[{\\"id\\":\\"itemid-0123456789\\",\\"text\\":\\"items\\",\\"checked\\":true,\\"userId\\":\\"userId-0987654321\\"}]}"`;
 
-exports[`Items middleware updates items 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[\\"updated items\\"]}"`;
+exports[`Items middleware update an item 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[{\\"id\\":\\"itemid-0123456789\\",\\"text\\":\\"items with updated\\",\\"checked\\":true,\\"userId\\":\\"userId-0987654321\\"}]}"`;

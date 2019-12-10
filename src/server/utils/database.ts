@@ -3,7 +3,7 @@ import { uuid } from 'uuidv4';
 
 const dynamoClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
 
-interface Item {
+export interface Item {
   id: string,
   userId: string,
   checked: boolean,
@@ -48,7 +48,7 @@ export async function addItem(
 
 export async function updateItem(
   userId: string,
-  { id, text, checked = false }: { id: string, text: string; checked?: boolean }
+  { id, text, checked = false }: Item
 ): Promise<Item[]> {
   await dynamoClient.update({
     TableName,
