@@ -1,7 +1,8 @@
 import AWS from 'aws-sdk';
 import { uuid } from 'uuidv4';
+import config from 'config';
 
-const dynamoClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
+const dynamoClient = new AWS.DynamoDB.DocumentClient(config.get('database.options'));
 
 export interface Item {
   id: string,

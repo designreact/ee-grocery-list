@@ -1,0 +1,10 @@
+{
+  "database": {
+    "options": {
+      "apiVersion": "2012-08-10",
+      "endpoint": "http://localhost:3000",
+      "region": "eu-west-1"
+    },
+    "port": 3000
+  }
+}
