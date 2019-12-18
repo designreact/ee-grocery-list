@@ -3,10 +3,10 @@ import { List } from "../list";
 import { shallow } from "enzyme";
 
 const mockItems = [
-  <li>'item-0'</li>,
-  <li>'item-1'</li>,
-  <li>'item-2'</li>,
-  <li>'item-3'</li>
+  <li key="item-0">item-0</li>,
+  <li key="item-1">item-1</li>,
+  <li key="item-2">item-2</li>,
+  <li key="item-3">item-3</li>
 ];
 const addHandlerMock = jest.fn();
 
@@ -15,17 +15,25 @@ test("it renders the list component", () => {
   expect(list).toMatchInlineSnapshot(`
     <div>
       <ul>
-        <li>
-          'item-0'
+        <li
+          key="item-0"
+        >
+          item-0
         </li>
-        <li>
-          'item-1'
+        <li
+          key="item-1"
+        >
+          item-1
         </li>
-        <li>
-          'item-2'
+        <li
+          key="item-2"
+        >
+          item-2
         </li>
-        <li>
-          'item-3'
+        <li
+          key="item-3"
+        >
+          item-3
         </li>
       </ul>
       <button
