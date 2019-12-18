@@ -12,6 +12,7 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
+    "plugin:react/recommended",
     "prettier",
     "prettier/@typescript-eslint"
   ],
@@ -53,9 +54,9 @@
         "*.integration.ts",
         "*.e2e.ts",
         "*.test.ts",
-        "**/__mocks__/*.ts",
-        "**/__units__/*.ts",
-        "**/__integrations__/*.ts"
+        "**/__mocks__/*.ts?(x)",
+        "**/__units__/*.ts?(x)",
+        "**/__integrations__/*.ts?(x)"
       ],
       "rules": {
         "@typescript-eslint/no-var-requires": "off",

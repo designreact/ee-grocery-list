@@ -16,5 +16,7 @@ module.exports = {
       lines: 80,
       statements: -10
     }
-  }
+  },
+  setupFilesAfterEnv: ['<rootDir>/enzyme.config.js'],
+  snapshotSerializers: ['enzyme-to-json/serializer']
 };
