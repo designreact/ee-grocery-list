@@ -1,18 +1,28 @@
 import * as React from 'react';
 
-interface ItemProps {
-  checked: string;
+export interface ItemProps {
+  checked: boolean;
   text: string;
-  onChecked: () => void;
+  onCheck: () => void;
   onDelete: () => void;
 }
 
-export function Item(props: ItemProps): React.ReactElement {
+export function Item({ checked, text, onCheck, onDelete }: ItemProps): React.ReactElement {
   return (
-    <li>
-      <button className="check" onClick={props.onChecked} />
-      <p>{props.text}</p>
-      <button className="delete" onClick={props.onDelete} />
+    <li className={checked ? 'item complete' : 'item'} aria-label="Shopping list item">
+      <p>{text}</p>
+      <button
+        className="item-check"
+        onClick={onCheck}
+        aria-label={checked ? 'Mark item' : 'Unmark item'}
+        role="checkbox"
+        aria-checked={checked}
+      />
+      <button
+        className="item-delete"
+        onClick={onDelete}
+        aria-label="Delete item"
+      />
     </li>
   );
 }

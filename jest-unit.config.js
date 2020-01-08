@@ -6,7 +6,7 @@ module.exports = {
   ...base,
   displayName: 'unit-test',
   roots: ['<rootDir>/'],
-  testMatch: ['**/__units__/**/*.unit.ts?(x)'],
+  testMatch: ['**/__units__/**/*.unit.ts'],
   collectCoverage: true,
   modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__'],
   coverageThreshold: {
@@ -17,6 +17,4 @@ module.exports = {
       statements: -10
     }
   },
-  setupFilesAfterEnv: ['<rootDir>/enzyme.config.js'],
-  snapshotSerializers: ['enzyme-to-json/serializer']
 };

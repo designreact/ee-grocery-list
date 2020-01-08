@@ -1,66 +1,67 @@
 import React from 'react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import { Item } from '../item';
-import { shallow } from 'enzyme';
 
 const checkHandlerMock = jest.fn();
 const deleteHandlerMock = jest.fn();
 
+afterEach(cleanup);
+
 test('it renders an item', () => {
-  const item = shallow(
+  const { asFragment } = render(
     <Item
-      checked="false"
+      checked={false}
       text="item-text"
-      onChecked={checkHandlerMock}
+      onCheck={checkHandlerMock}
       onDelete={deleteHandlerMock}
     />
   );
-  expect(item).toMatchInlineSnapshot(
-    `
-    <li>
-      <button
-        className="check"
-        onClick={[MockFunction]}
-      />
-      <p>
-        item-text
-      </p>
-      <button
-        className="delete"
-        onClick={[MockFunction]}
-      />
-    </li>
-  `
-  );
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <li
+        aria-label="Shopping list item"
+        class="item"
+      >
+        <p>
+          item-text
+        </p>
+        <button
+          aria-checked="false"
+          aria-label="Unmark item"
+          class="item-check"
+          role="checkbox"
+        />
+        <button
+          aria-label="Delete item"
+          class="item-delete"
+        />
+      </li>
+    </DocumentFragment>
+  `);
 });
 
 test('when checked it calls the check handler', () => {
-  const item = shallow(
+  const { getByLabelText } = render(
     <Item
-      checked="false"
+      checked={false}
       text="item-text"
-      onChecked={checkHandlerMock}
+      onCheck={checkHandlerMock}
       onDelete={deleteHandlerMock}
     />
   );
-  item
-    .find('button.check')
-    .first()
-    .simulate('click');
+  fireEvent.click(getByLabelText('Unmark item'));
   expect(checkHandlerMock).toHaveBeenCalledTimes(1);
 });
 
 test('when deleted it calls the delete handler', () => {
-  const item = shallow(
+  const { getByLabelText } = render(
     <Item
-      checked="false"
+      checked={false}
       text="item-text"
-      onChecked={checkHandlerMock}
+      onCheck={checkHandlerMock}
       onDelete={deleteHandlerMock}
     />
   );
-  item
-    .find('button.delete')
-    .first()
-    .simulate('click');
+  fireEvent.click(getByLabelText('Delete item'));
   expect(deleteHandlerMock).toHaveBeenCalledTimes(1);
 });

@@ -1,54 +1,158 @@
-import React from "react";
-import { List } from "../list";
-import { shallow } from "enzyme";
+import React from 'react';
+import { render, cleanup, fireEvent, getByRole } from '@testing-library/react';
+import { List } from '../list';
+import { Item } from '../../../server/utils/database';
 
-const mockItems = [
-  <li key="item-0">item-0</li>,
-  <li key="item-1">item-1</li>,
-  <li key="item-2">item-2</li>,
-  <li key="item-3">item-3</li>
+const mockItems: Item[] = [
+  {
+    id: 'id-0',
+    userId: 'userId-0',
+    text: 'test-0',
+    checked: true
+  },
+  {
+    id: 'id-1',
+    userId: 'userId-1',
+    text: 'test-1',
+    checked: true
+  },
+  {
+    id: 'id-2',
+    userId: 'userId-2',
+    text: 'test-2',
+    checked: false
+  },
+  {
+    id: 'id-3',
+    userId: 'userId-3',
+    text: 'test-3',
+    checked: false
+  }
 ];
 const addHandlerMock = jest.fn();
 
-test("it renders the list component", () => {
-  const list = shallow(<List items={mockItems} onAdd={addHandlerMock} />);
-  expect(list).toMatchInlineSnapshot(`
-    <div>
-      <ul>
-        <li
-          key="item-0"
+afterEach(cleanup);
+
+test('it renders the list component', () => {
+  const { asFragment } = render(
+    <List
+      items={mockItems}
+      onAdd={addHandlerMock}
+      onCheck={() => {}}
+      onDelete={() => {}}
+    />
+  );
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <div>
+        <ul
+          aria-label="Shopping list"
         >
-          item-0
-        </li>
-        <li
-          key="item-1"
+          <li
+            aria-label="Shopping list item"
+            class="item complete"
+          >
+            <p>
+              test-0
+            </p>
+            <button
+              aria-checked="true"
+              aria-label="Mark item"
+              class="item-check"
+              role="checkbox"
+            />
+            <button
+              aria-label="Delete item"
+              class="item-delete"
+            />
+          </li>
+          <li
+            aria-label="Shopping list item"
+            class="item complete"
+          >
+            <p>
+              test-1
+            </p>
+            <button
+              aria-checked="true"
+              aria-label="Mark item"
+              class="item-check"
+              role="checkbox"
+            />
+            <button
+              aria-label="Delete item"
+              class="item-delete"
+            />
+          </li>
+          <li
+            aria-label="Shopping list item"
+            class="item"
+          >
+            <p>
+              test-2
+            </p>
+            <button
+              aria-checked="false"
+              aria-label="Unmark item"
+              class="item-check"
+              role="checkbox"
+            />
+            <button
+              aria-label="Delete item"
+              class="item-delete"
+            />
+          </li>
+          <li
+            aria-label="Shopping list item"
+            class="item"
+          >
+            <p>
+              test-3
+            </p>
+            <button
+              aria-checked="false"
+              aria-label="Unmark item"
+              class="item-check"
+              role="checkbox"
+            />
+            <button
+              aria-label="Delete item"
+              class="item-delete"
+            />
+          </li>
+        </ul>
+        <form
+          class="form"
         >
-          item-1
-        </li>
-        <li
-          key="item-2"
-        >
-          item-2
-        </li>
-        <li
-          key="item-3"
-        >
-          item-3
-        </li>
-      </ul>
-      <button
-        className="add"
-        onClick={[MockFunction]}
-      />
-    </div>
+          <label
+            class="form-label"
+            for="form-button"
+          >
+            Add new item
+          </label>
+          <input
+            class="form-textarea"
+          />
+          <button
+            class="form-button"
+            id="form-button"
+            type="submit"
+          />
+        </form>
+      </div>
+    </DocumentFragment>
   `);
 });
 
-test("clicking the add item button adds an item", () => {
-  const list = shallow(<List items={mockItems} onAdd={addHandlerMock} />);
-  list
-    .find("button.add")
-    .first()
-    .simulate("click");
+test('clicking the add item button calls the add handler', () => {
+  const { getByLabelText } = render(
+    <List
+      items={mockItems}
+      onAdd={addHandlerMock}
+      onCheck={() => {}}
+      onDelete={() => {}}
+    />
+  );
+  fireEvent.submit(getByLabelText('Add new item'));
   expect(addHandlerMock).toHaveBeenCalledTimes(1);
 });
