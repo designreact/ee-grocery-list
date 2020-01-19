@@ -6,7 +6,7 @@ import {
   updateItem,
   deleteItem,
 } from '../utils/database';
-import { Item } from '../utils/database';
+import { Item } from '../../types/Item';
 
 const applyUpdates = (userId: string, action: string, item: Item): Promise<Item[]> => {  
   switch (action) {
@@ -23,20 +23,30 @@ const applyUpdates = (userId: string, action: string, item: Item): Promise<Item[
 
 export const itemMiddlewareGet = async (ctx: Koa.Context): Promise<void> => {
   const userId = ctx.cookies.get('userId');
+  const items = userId ? await getItems(userId) : [];
   ctx.body = {
     status: 'ok',
-    items: userId ? await getItems(userId) : []
+    items,
   };
 };
 
 export const itemMiddlewarePost = async (ctx: Koa.Context): Promise<void> => {
   const userId = ctx.cookies.get('userId');
-  const { action, item } = ctx.request.body;
+  if (!userId) {
+    ctx.body = {
+      status: 'ok',
+      items: [],
+    };
+    return;
+  }
   
-  const updatedItems: Item[] = userId ? await applyUpdates(userId, action, item) : [];
+  const { action, item } = ctx.request.body;
+  const items: Item[] = action
+    ? await applyUpdates(userId, action, item)
+    : await getItems(userId);
 
   ctx.body = {
     status: 'ok',
-    items: updatedItems
+    items
   };
 };

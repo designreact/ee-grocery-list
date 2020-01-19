@@ -4,9 +4,13 @@
   "description": "Rudimentary grocery list application",
   "main": "bin/server/index.js",
   "scripts": {
-    "build": "tsc --build",
-    "debug": "ts-node ./src/server/index.ts",
+    "build": "run-p -c build:*",
+    "build:client": "webpack --config webpack.config.js --mode production",
+    "build:server": "tsc --build",
+    "debug:server": "ts-node ./src/server/index.ts",
+    "debug:client": "webpack-dev-server --open --mode development",
     "test": "run-p -c test:*",
+    "start": "node ./bin/server/index.js",
     "db:start": "node -e 'require(\"./scripts/dynamodb-local\").start()'",
     "test:unit": "run-p -c test:unit:*",
     "test:unit:react": "jest -c jest-unit-react.config.js",
@@ -46,6 +50,10 @@
     "uuidv4": "^6.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.7",
     "@shopify/jest-koa-mocks": "^2.1.10",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -59,6 +67,7 @@
     "@types/supertest": "^2.0.8",
     "@types/uuidv4": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "1.7.0",
+    "babel-loader": "^8.0.6",
     "dynamodb-local": "^0.0.31",
     "eslint": "5.16.0",
     "eslint-config-prettier": "4.2.0",
@@ -66,6 +75,8 @@
     "eslint-plugin-jest": "22.6.4",
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.13.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "jsdom": "^15.2.1",
@@ -73,9 +84,13 @@
     "nock": "10.0.6",
     "npm-run-all": "4.1.5",
     "prettier": "1.17.0",
+    "regenerator-runtime": "^0.13.3",
     "supertest": "^4.0.2",
     "ts-jest": "^24.2.0",
     "ts-node": "8.1.0",
-    "typescript": "3.4.5"
+    "typescript": "3.4.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   }
 }

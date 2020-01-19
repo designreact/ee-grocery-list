@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Item } from './item';
-import { Item as DBItem } from '../../server/utils/database';
+import { Item as DBItem } from '../../types/Item';
 
 export interface ListProps {
   items: DBItem[],
@@ -26,9 +26,12 @@ function renderListItems(props: ListProps): React.ReactElement[] {
 export function List(props: ListProps): React.ReactElement {
   const [text, setText] = React.useState('');
   return (
-    <div>
-      <ul aria-label="Shopping list">{renderListItems(props)}</ul>
-      <form className="form" onSubmit={(): void => {props.onAdd(text);}}>
+    <>
+      <ul className="list" aria-label="Shopping list">{renderListItems(props)}</ul>
+      <form className="form" onSubmit={(e): void => {
+        e.preventDefault(); 
+        props.onAdd(text);
+      }}>
         <label className="form-label" htmlFor="form-button">Add new item</label>
         <input
           className="form-textarea"
@@ -42,6 +45,6 @@ export function List(props: ListProps): React.ReactElement {
           type="submit"
         />
       </form>
-    </div>
+    </>
   );
 }

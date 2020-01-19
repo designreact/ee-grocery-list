@@ -22,7 +22,7 @@
     "noImplicitReturns": true
   },
   "include": [
-    "src",
+    "src/server",
   ],
   "exclude": [
     ".nyc_output",

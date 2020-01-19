@@ -1,8 +1,17 @@
 import React from 'react';
 import axios from 'axios';
-import config from 'config';
-import { Item } from 'src/server/utils/database';
+import { Item } from '../../../types/Item';
 import { ListProps } from '../list';
+
+declare var CONFIG: {
+  api: {
+    host: string;
+    port: number;
+    routes: {
+      items: string;
+    };
+  };
+};
 
 function useShoppingApi(): [Item[], boolean, Function] {
   const [data, setRequest] = React.useState({});
@@ -12,10 +21,9 @@ function useShoppingApi(): [Item[], boolean, Function] {
   React.useEffect(
     (): void => {
       setLoading(true);
-
       async function fetchItems(): Promise<void> {
         try {
-          const { host, port, routes } = config.get('api');
+          const { host, port, routes } = CONFIG.api;
           const path = `${host}:${port}${routes.items}`;
           const { data: { items } } = await axios.post(path, data);
           setResults(items);
@@ -25,9 +33,8 @@ function useShoppingApi(): [Item[], boolean, Function] {
           setLoading(false);
         }
       }
-
       fetchItems();
-    }, []
+    }, [data]
   );
 
   return [results, loading, setRequest];
@@ -39,7 +46,7 @@ export function withListHooks(
 ): () => React.ReactElement {
   return function ListWrapper(): React.ReactElement {
     const [results, loading, setRequest] = useShoppingApi();
-
+    
     return loading
       ? (<p>Loading...</p>) 
       : (<Component
