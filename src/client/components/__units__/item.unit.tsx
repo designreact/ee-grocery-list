@@ -22,18 +22,20 @@ test('it renders an item', () => {
         aria-label="Shopping list item"
         class="item"
       >
-        <p>
+        <p
+          class="item-text"
+        >
           item-text
         </p>
         <button
           aria-checked="false"
           aria-label="Unmark item"
-          class="item-check"
+          class="app-button check"
           role="checkbox"
         />
         <button
           aria-label="Delete item"
-          class="item-delete"
+          class="app-button delete"
         />
       </li>
     </DocumentFragment>

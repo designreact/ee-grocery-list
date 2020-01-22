@@ -44,102 +44,113 @@ test('it renders the list component', () => {
   );
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
-      <div>
-        <ul
-          aria-label="Shopping list"
+      <ul
+        aria-label="Shopping list"
+        class="list"
+      >
+        <li
+          aria-label="Shopping list item"
+          class="item complete"
         >
-          <li
-            aria-label="Shopping list item"
-            class="item complete"
+          <p
+            class="item-text"
           >
-            <p>
-              test-0
-            </p>
-            <button
-              aria-checked="true"
-              aria-label="Mark item"
-              class="item-check"
-              role="checkbox"
-            />
-            <button
-              aria-label="Delete item"
-              class="item-delete"
-            />
-          </li>
-          <li
-            aria-label="Shopping list item"
-            class="item complete"
-          >
-            <p>
-              test-1
-            </p>
-            <button
-              aria-checked="true"
-              aria-label="Mark item"
-              class="item-check"
-              role="checkbox"
-            />
-            <button
-              aria-label="Delete item"
-              class="item-delete"
-            />
-          </li>
-          <li
-            aria-label="Shopping list item"
-            class="item"
-          >
-            <p>
-              test-2
-            </p>
-            <button
-              aria-checked="false"
-              aria-label="Unmark item"
-              class="item-check"
-              role="checkbox"
-            />
-            <button
-              aria-label="Delete item"
-              class="item-delete"
-            />
-          </li>
-          <li
-            aria-label="Shopping list item"
-            class="item"
-          >
-            <p>
-              test-3
-            </p>
-            <button
-              aria-checked="false"
-              aria-label="Unmark item"
-              class="item-check"
-              role="checkbox"
-            />
-            <button
-              aria-label="Delete item"
-              class="item-delete"
-            />
-          </li>
-        </ul>
-        <form
-          class="form"
-        >
-          <label
-            class="form-label"
-            for="form-button"
-          >
-            Add new item
-          </label>
-          <input
-            class="form-textarea"
+            test-0
+          </p>
+          <button
+            aria-checked="true"
+            aria-label="Mark item"
+            class="app-button check"
+            role="checkbox"
           />
           <button
-            class="form-button"
+            aria-label="Delete item"
+            class="app-button delete"
+          />
+        </li>
+        <li
+          aria-label="Shopping list item"
+          class="item complete"
+        >
+          <p
+            class="item-text"
+          >
+            test-1
+          </p>
+          <button
+            aria-checked="true"
+            aria-label="Mark item"
+            class="app-button check"
+            role="checkbox"
+          />
+          <button
+            aria-label="Delete item"
+            class="app-button delete"
+          />
+        </li>
+        <li
+          aria-label="Shopping list item"
+          class="item"
+        >
+          <p
+            class="item-text"
+          >
+            test-2
+          </p>
+          <button
+            aria-checked="false"
+            aria-label="Unmark item"
+            class="app-button check"
+            role="checkbox"
+          />
+          <button
+            aria-label="Delete item"
+            class="app-button delete"
+          />
+        </li>
+        <li
+          aria-label="Shopping list item"
+          class="item"
+        >
+          <p
+            class="item-text"
+          >
+            test-3
+          </p>
+          <button
+            aria-checked="false"
+            aria-label="Unmark item"
+            class="app-button check"
+            role="checkbox"
+          />
+          <button
+            aria-label="Delete item"
+            class="app-button delete"
+          />
+        </li>
+      </ul>
+      <form
+        class="form"
+      >
+        <label
+          class="form-label"
+          for="form-button"
+        >
+          Add new item
+        </label>
+        <div
+          class="form-entry"
+        >
+          <input
+            class="form-input"
+          />
+          <button
+            class="app-button add"
             id="form-button"
             type="submit"
           />
-        </form>
-      </div>
+        </div>
+      </form>
     </DocumentFragment>
   `);
 });

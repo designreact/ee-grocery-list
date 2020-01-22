@@ -38,7 +38,7 @@ describe('getItems', () => {
   test('it gets the users items', async () => {
     const expectedParams = {
       TableName: 'Items',
-      IndexName: 'userId',
+      IndexName: 'UserId',
       KeyConditionExpression: 'userId = :userId',
       ExpressionAttributeValues: {
         ':userId': mockUserId
@@ -87,12 +87,18 @@ describe('updateItem', () => {
   test('it updates the item in the database', async () => {
     const expectedParams = {
       TableName: 'Items',
+      ExpressionAttributeNames: {
+        '#text': 'text'
+      },
+      ExpressionAttributeValues: {
+        ':checked': false,
+        ':text': 'string'
+      },
       Key: {
         id: 'uuid',
         userId: mockUserId,
-        text: 'string',
-        checked: true
-      }
+      },
+      UpdateExpression: 'set #text = :text, checked = :checked'
     };
     await updateItem(mockUserId, { id: 'uuid', text: 'string', checked: true });
     expect(dbClientPrototype.update).toHaveBeenCalledWith(expectedParams);
@@ -101,12 +107,18 @@ describe('updateItem', () => {
   test('it defaults checked to false', async () => {
     const expectedParams = {
       TableName: 'Items',
+      ExpressionAttributeNames: {
+        '#text': 'text'
+      },
+      ExpressionAttributeValues: {
+        ':checked': false,
+        ':text': 'string'
+      },
       Key: {
         id: 'uuid',
         userId: mockUserId,
-        text: 'string',
-        checked: false
-      }
+      },
+      UpdateExpression: 'set #text = :text, checked = :checked'
     };
     await updateItem(mockUserId, { id: 'uuid', text: 'string' });
     expect(dbClientPrototype.update).toHaveBeenCalledWith(expectedParams);
@@ -130,7 +142,8 @@ describe('deleteItem', () => {
     const expectedParams = {
       TableName: 'Items',
       Key: {
-        id: mockItemId
+        id: mockItemId,
+        userId: mockUserId,
       }
     };
     await deleteItem(mockUserId, mockItemId);
