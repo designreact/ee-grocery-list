@@ -1,0 +1,82 @@
+html {
+  background-color: #333;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+}
+
+.app {
+  max-width: 40em;
+  padding: 2em;
+  margin: 0 auto;
+  background-color: #222;
+}
+
+.app > h1 {
+  margin-top: 0;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.item,
+.form-entry {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+}
+
+.item.complete {
+  color: #888;
+  text-decoration: line-through;
+}
+
+.item.complete .app-button.check {
+  display: none;
+}
+
+.form-label {
+  display: block;
+  padding: 1em 0;
+  border-top: 1px #fff solid;
+  font-weight: 600;
+}
+
+.item-text,
+.form-input {
+  flex: 1 0 0;
+}
+
+.form-input {
+  border-radius: .2em;
+}
+
+.app-button {
+  width: 2em;
+  height: 2em;
+  padding: .5em;
+  border: none;
+  margin-left: 1em;
+  border-radius: .2em;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 80%;
+}
+
+.app-button.add {
+  background-image: url('/static/plus.svg');
+  background-color: #008;
+}
+
+.app-button.delete {
+  background-image: url('/static/cancel.svg');
+  background-color: #800;
+}
+
+.app-button.check {
+  background-image: url('/static/check.svg');
+  background-color: #080;
+}

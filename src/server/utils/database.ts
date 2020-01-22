@@ -54,9 +54,15 @@ export async function updateItem(
       TableName,
       Key: {
         id,
-        userId,
-        text,
-        checked
+        userId
+      },
+      UpdateExpression: 'set #text = :text, checked = :checked',
+      ExpressionAttributeNames: {
+        '#text': 'text',
+      },
+      ExpressionAttributeValues: {
+        ':text': text,
+        ':checked': checked
       }
     })
     .promise();
@@ -71,7 +77,7 @@ export async function deleteItem(
   await dynamoClient
     .delete({
       TableName,
-      Key: { id }
+      Key: { id, userId }
     })
     .promise();
   const items = await getItems(userId);

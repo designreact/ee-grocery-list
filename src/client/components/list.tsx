@@ -27,23 +27,28 @@ export function List(props: ListProps): React.ReactElement {
   const [text, setText] = React.useState('');
   return (
     <>
-      <ul className="list" aria-label="Shopping list">{renderListItems(props)}</ul>
-      <form className="form" onSubmit={(e): void => {
-        e.preventDefault(); 
-        props.onAdd(text);
-      }}>
-        <label className="form-label" htmlFor="form-button">Add new item</label>
-        <input
-          className="form-textarea"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
-            setText(event.target.value);
-          }}
-        />
-        <button
-          id="form-button"
-          className="form-button"
-          type="submit"
-        />
+      <ul className="list" aria-label="Shopping list">
+        {renderListItems(props)}
+      </ul>
+      <form
+        className="form"
+        onSubmit={(e): void => {
+          e.preventDefault();
+          props.onAdd(text);
+        }}
+      >
+        <label className="form-label" htmlFor="form-button">
+          Add new item
+        </label>
+        <div className="form-entry">
+          <input
+          className="form-input"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
+              setText(event.target.value);
+            }}
+          />
+          <button id="form-button" className="app-button add" type="submit" />
+        </div>
       </form>
     </>
   );

@@ -1,6 +1,7 @@
 require('regenerator-runtime/runtime');
 const path = require('path');
 const { DefinePlugin } = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -35,7 +36,11 @@ module.exports = {
     }),
     new HtmlWebPackPlugin({
       template: './index.html'
-    })
+    }),
+    new CopyPlugin([
+      { from: 'main.css' },
+      { from: '../../static', to: 'static' }
+    ])
   ],
   resolve: {
     extensions: ['.js', '.ts', '.tsx']
