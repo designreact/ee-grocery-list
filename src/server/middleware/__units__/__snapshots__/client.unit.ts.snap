@@ -2,7 +2,107 @@
 
 exports[`The client middleware to set the status and body as expected 1`] = `
 Object {
-  "body": "Hello World!",
-  "status": 200,
+  "matched": Array [
+    Layer {
+      "methods": Array [
+        "HEAD",
+        "GET",
+      ],
+      "name": null,
+      "opts": Object {
+        "end": true,
+        "ignoreCaptures": undefined,
+        "name": null,
+        "prefix": "",
+        "sensitive": false,
+        "strict": false,
+      },
+      "paramNames": Array [
+        Object {
+          "asterisk": true,
+          "delimiter": "/",
+          "name": 0,
+          "optional": false,
+          "partial": false,
+          "pattern": ".*",
+          "prefix": "",
+          "repeat": false,
+        },
+      ],
+      "path": "*",
+      "regexp": /\\^\\(\\(\\?:\\.\\*\\)\\)\\(\\?:\\\\/\\(\\?=\\$\\)\\)\\?\\$/i,
+      "stack": Array [
+        [Function],
+      ],
+    },
+  ],
+  "router": Router {
+    "methods": Array [
+      "HEAD",
+      "OPTIONS",
+      "GET",
+      "PUT",
+      "PATCH",
+      "POST",
+      "DELETE",
+    ],
+    "opts": Object {},
+    "params": Object {},
+    "stack": Array [
+      Layer {
+        "methods": Array [
+          "HEAD",
+          "GET",
+        ],
+        "name": null,
+        "opts": Object {
+          "end": true,
+          "ignoreCaptures": undefined,
+          "name": null,
+          "prefix": "",
+          "sensitive": false,
+          "strict": false,
+        },
+        "paramNames": Array [],
+        "path": "/",
+        "regexp": /\\^\\(\\?:\\\\/\\(\\?=\\$\\)\\)\\?\\$/i,
+        "stack": Array [
+          [Function],
+        ],
+      },
+      Layer {
+        "methods": Array [
+          "HEAD",
+          "GET",
+        ],
+        "name": null,
+        "opts": Object {
+          "end": true,
+          "ignoreCaptures": undefined,
+          "name": null,
+          "prefix": "",
+          "sensitive": false,
+          "strict": false,
+        },
+        "paramNames": Array [
+          Object {
+            "asterisk": true,
+            "delimiter": "/",
+            "name": 0,
+            "optional": false,
+            "partial": false,
+            "pattern": ".*",
+            "prefix": "",
+            "repeat": false,
+          },
+        ],
+        "path": "*",
+        "regexp": /\\^\\(\\(\\?:\\.\\*\\)\\)\\(\\?:\\\\/\\(\\?=\\$\\)\\)\\?\\$/i,
+        "stack": Array [
+          [Function],
+        ],
+      },
+    ],
+  },
 }
 `;

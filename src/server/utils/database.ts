@@ -21,6 +21,7 @@ export async function getItems(userId: string): Promise<Item[]> {
     const data = await dynamoClient.query(queryParameters).promise();
     return data.Items as Item[];
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
     return [];
   }

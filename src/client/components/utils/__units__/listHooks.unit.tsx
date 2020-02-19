@@ -3,6 +3,8 @@ import { act, render, cleanup, waitForElement, fireEvent } from '@testing-librar
 import { withListHooks } from '../listHooks';
 import axios from 'axios';
 
+const expectedItems = ['item0', 'item1', 'item2'];
+
 test('Expect loading to render', async () => {
   expect.assertions(1);
   
@@ -21,9 +23,8 @@ test('Expect loading to render', async () => {
   });
 });
 
+
 describe('With a resolved request', () => {
-  const expectedItems = ['item0', 'item1', 'item2'];
-  
   beforeEach(() => {
     axios.post = jest.fn(() => Promise.resolve({ data: { items: expectedItems } }));
   });

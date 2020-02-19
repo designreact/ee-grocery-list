@@ -105,8 +105,8 @@ describe('itemMiddlewarePost', () => {
     });
   });
 
-  test('expect the itemsMiddleware to return an empty array when no action is sent', async () => {
-    updateItem.mockResolvedValue(mockResponseItems);
+  test('expect the itemsMiddleware to return items even when action is sent', async () => {
+    getItems.mockResolvedValue(mockResponseItems);
     const ctx = createMockContext({
       request: {
         body: {
@@ -117,7 +117,7 @@ describe('itemMiddlewarePost', () => {
     await itemMiddlewarePost(ctx);
     expect(ctx.body).toStrictEqual({
       status: 'ok',
-      items: []
+      items: mockResponseItems,
     });
   });
 

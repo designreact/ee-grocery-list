@@ -9,12 +9,12 @@ module.exports = {
   testMatch: ['**/__units__/**/*.unit.ts'],
   collectCoverage: true,
   modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__'],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: -10
-    }
-  },
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 80,
+  //     functions: 80,
+  //     lines: 80,
+  //     statements: -10
+  //   }
+  // },
 };

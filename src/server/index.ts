@@ -14,8 +14,8 @@ const router = new Router();
 router.get('/items', itemMiddlewareGet);
 router.post('/items', itemMiddlewarePost);
 
-app.use(clientMiddleware);
 app.use(authMiddleware);
+app.use(clientMiddleware);
 app.use(cors({
   origin: '*'
 }));
@@ -23,7 +23,8 @@ app.use(bodyParser());
 app.use(router.routes());
 
 const server = app.listen(PORT, (): void => {
+  // eslint-disable-next-line no-console
   console.log('started on', PORT);
 });
 
-export { app, server };
+export { app, router, server };

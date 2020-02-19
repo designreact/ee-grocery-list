@@ -1,6 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Client middleware works 1`] = `"Hello World!"`;
+exports[`Auth middleware sets a cookie 1`] = `
+Array [
+  "userId=0123456789; path=/; httponly",
+]
+`;
+
+exports[`Auth middleware sets a cookie 2`] = `
+"<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>React Shopping List</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+  <div id=\\"root\\"></div>
+</body>
+</html>"
+`;
+
+exports[`Client middleware works 1`] = `
+"<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>React Shopping List</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+  <div id=\\"root\\"></div>
+</body>
+</html>"
+`;
 
 exports[`Items middleware add an item 1`] = `"{\\"status\\":\\"ok\\",\\"items\\":[{\\"id\\":\\"itemid-0123456789\\",\\"text\\":\\"items with added\\",\\"checked\\":true,\\"userId\\":\\"userId-0987654321\\"}]}"`;
 

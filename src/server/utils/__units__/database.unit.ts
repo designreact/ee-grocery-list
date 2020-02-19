@@ -36,6 +36,8 @@ dbClientPrototype.delete.mockImplementation(awsMenthodMock);
 
 describe('getItems', () => {
   test('it gets the users items', async () => {
+    expect.assertions(1);
+    promiseMock.mockResolvedValue({ Items: expectedItems });
     const expectedParams = {
       TableName: 'Items',
       IndexName: 'UserId',
@@ -49,12 +51,14 @@ describe('getItems', () => {
   });
 
   test('it returns items', async () => {
+    expect.assertions(1);
     promiseMock.mockResolvedValue({ Items: expectedItems });
     const items = await getItems(mockUserId);
     expect(items).toEqual(expectedItems);
   });
 
   test('it returns an empty array if AWS errors', async () => {
+    expect.assertions(1);
     promiseMock.mockRejectedValue('error');
     const items = await getItems(mockUserId);
     expect(items).toEqual([]);
@@ -63,6 +67,8 @@ describe('getItems', () => {
 
 describe('addItem', () => {
   test('it adds an item to the database', async () => {
+    expect.assertions(1);
+    promiseMock.mockResolvedValue({ Items: expectedItems });
     const expectedParams = {
       TableName: 'Items',
       Item: {
@@ -77,6 +83,7 @@ describe('addItem', () => {
   });
 
   test('it returns the updated items', async () => {
+    expect.assertions(1);
     promiseMock.mockResolvedValue({ Items: expectedItems });
     const items = await addItem(mockUserId, 'new-item');
     expect(items).toEqual(expectedItems);
@@ -85,6 +92,7 @@ describe('addItem', () => {
 
 describe('updateItem', () => {
   test('it updates the item in the database', async () => {
+    expect.assertions(1);
     const expectedParams = {
       TableName: 'Items',
       ExpressionAttributeNames: {
@@ -100,11 +108,12 @@ describe('updateItem', () => {
       },
       UpdateExpression: 'set #text = :text, checked = :checked'
     };
-    await updateItem(mockUserId, { id: 'uuid', text: 'string', checked: true });
+    await updateItem(mockUserId, { id: 'uuid', text: 'string', checked: false });
     expect(dbClientPrototype.update).toHaveBeenCalledWith(expectedParams);
   });
 
   test('it defaults checked to false', async () => {
+    expect.assertions(1);
     const expectedParams = {
       TableName: 'Items',
       ExpressionAttributeNames: {
@@ -125,6 +134,7 @@ describe('updateItem', () => {
   });
 
   test('it returns the updated items', async () => {
+    expect.assertions(1);
     promiseMock.mockResolvedValue({ Items: expectedItems });
     const items = await updateItem(mockUserId, {
       id: 'uuid',
@@ -139,6 +149,7 @@ describe('deleteItem', () => {
   const mockItemId = 'itemid-9876543210';
 
   test('it deletes the item from the database', async () => {
+    expect.assertions(1);
     const expectedParams = {
       TableName: 'Items',
       Key: {
@@ -151,6 +162,7 @@ describe('deleteItem', () => {
   });
   
   test('it returns the updated items', async () => {
+    expect.assertions(1);
     promiseMock.mockResolvedValue({ Items: expectedItems });
     const items = await deleteItem(mockUserId, mockItemId);
     expect(items).toEqual(expectedItems);

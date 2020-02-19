@@ -16,7 +16,7 @@ declare var CONFIG: {
 function useShoppingApi(): [Item[], boolean, Function] {
   const [data, setRequest] = React.useState({});
   const [results, setResults] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   
   React.useEffect(
     (): void => {
@@ -46,7 +46,7 @@ export function withListHooks(
 ): () => React.ReactElement {
   return function ListWrapper(): React.ReactElement {
     const [results, loading, setRequest] = useShoppingApi();
-    
+        
     return loading
       ? (<p>Loading...</p>) 
       : (<Component

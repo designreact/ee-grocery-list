@@ -12,26 +12,25 @@ afterAll(() => {
 });
 
 test('Client middleware works', async () => {
-  const response = await request(app.callback()).get('/');
+  const response = await request(app.callback()).get('/').send();
   expect(response.status).toBe(200);
   expect(response.text).toMatchSnapshot();
 });
 
-// TODO: figure out why supertest isnt getting cookie 
-test.skip('Auth middleware sets a cookie', async () => {
-  const response = await request(app.callback())
-    .get('/')
-    .expect('set-cookie', 'userId=0123456789; Path=/');
+test('Auth middleware sets a cookie', async () => {
+  const response = await request(app.callback()).get('/').send();
   expect(response.status).toBe(200);
+  expect(response.res.headers['set-cookie']).toMatchSnapshot();
   expect(response.text).toMatchSnapshot();
 });
 
-// TODO: use configured local database to simulate add, remove & update
 describe('Items middleware', () => {
-  test('gets items', async () => {
+  // TODO: use configured local database to simulate add, remove & update
+  test.skip('gets items', async () => {
     const response = await request(app.callback())
     .get('/items')
-    .set('Cookie', ['userId=0123456789']);
+    .set('Cookie', ['userId=0123456789'])
+    .send();
     expect(response.status).toBe(200);
     expect(response.text).toMatchSnapshot();
   });
