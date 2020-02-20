@@ -15,6 +15,6 @@ You need a local database running for the integration tests and sample app to ru
 
 
 ### Run application
-Open http://localhost:4000/ in your preferred browser. 
+Open http://localhost:1337/ in your preferred browser. 
 
 Cookies are used to track user sessions, different browsers / incognito windows can be used to emulate mutiple sessions.
