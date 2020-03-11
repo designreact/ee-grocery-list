@@ -1,6 +1,7 @@
 ## Rudimentary Grocery List Application
 
 Sample application for Equal Experts technical challenge.
+Please see [Test.md](https://github.com/designreact/ee-grocery-list/blob/master/Test.md) for the test outline.
 
 ### Start local database
 You need a local database running for the integration tests and sample app to run
